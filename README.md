@@ -20,7 +20,7 @@ npm i html-nest-rule
 
 ```javascript
 var element = document.createElement('p');
-var rule = require('html-nest-rule')[element.tagName.toLowerCase()];
+var rule = require('html-nest-rule').from(element);
 
 rule.getCategories(element);        // ['flow content', 'palpable content'], categories of given element
 rule.validateContext(element, []);  // [], do context validate
