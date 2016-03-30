@@ -1,26 +1,8 @@
-{
-    "files": [
-        "lib",
-        "cli",
-        "test/**/*.spec.js"
-    ],
+---
 
-    "eslint": {
-        "env": {
-            "node": true,
-            "browser": false
-        },
-
-        "rules": {
-            "no-console": 0
-        }
-    },
-
-    "csshint": {
-
-    },
-
-    "htmlcs": {
-
-    }
-}
+eslint: 
+  env: 
+    node: true
+    browser: false
+  rules: 
+    no-console: 0
