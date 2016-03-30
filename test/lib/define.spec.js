@@ -23,21 +23,36 @@ describe('define for inter-element whitespace', function () {
     var dismatch = define.isNot(name);
 
     it('should match correctly', function () {
-        expect(match(undefined)).toBe(true);
-        expect(match(getElement('span').childNodes[0])).toBe(true);
-        expect(match(getElement('span{\u0020}').childNodes[0])).toBe(true);
-        expect(match(getElement('span{\u0009}').childNodes[0])).toBe(true);
-        expect(match(getElement('span{\u000a}').childNodes[0])).toBe(true);
-        expect(match(getElement('span{\u000c}').childNodes[0])).toBe(true);
-        expect(match(getElement('span{\u000d}').childNodes[0])).toBe(true);
-        expect(match(getElement('span{\u0020\u0009}').childNodes[0])).toBe(true);
-        expect(match(getElement('span{\u0020\u0009\u000a\u000c\u000d}').childNodes[0])).toBe(true);
 
-        expect(dismatch(getElement('span{hello!}').childNodes[0])).toBe(true);
-        expect(dismatch(getElement('span{hello!\u0020}').childNodes[0])).toBe(true);
-        expect(dismatch(getElement('span'))).toBe(true);
-        expect(dismatch(getElement('p'))).toBe(true);
-        expect(dismatch(getElement('div'))).toBe(true);
+        expect(match(undefined)).toBe(true);
+
+        [
+            'span',
+            'span{\u0020}',
+            'span{\u0009}',
+            'span{\u000a}',
+            'span{\u000c}',
+            'span{\u000d}',
+            'span{\u0020\u0009}',
+            'span{\u0020\u0009\u000a\u000c\u000d}'
+        ].forEach(function (testcase) {
+            expect(match(getElement(testcase).childNodes[0])).toBe(true);
+        });
+
+        [
+            'span{hello!}',
+            'span{hello!\u0020}'
+        ].forEach(function (testcase) {
+            expect(dismatch(getElement(testcase).childNodes[0])).toBe(true);
+        });
+
+        [
+            'span',
+            'p',
+            'div'
+        ].forEach(function (testcase) {
+            expect(dismatch(getElement(testcase))).toBe(true);
+        });
     });
 });
 
@@ -47,15 +62,24 @@ describe('define for media element', function () {
     var dismatch = define.isNot(name);
 
     it('should match correctly', function () {
-        expect(match(getElement('audio'))).toBe(true);
-        expect(match(getElement('audio[controls]'))).toBe(true);
-        expect(match(getElement('video'))).toBe(true);
-        expect(match(getElement('video[controls]'))).toBe(true);
+        [
+            'audio',
+            'audio[controls]',
+            'video',
+            'video[controls]'
+        ].forEach(function (testcase) {
+            expect(match(getElement(testcase))).toBe(true);
+        });
 
         expect(dismatch(undefined)).toBe(true);
-        expect(dismatch(getElement('span'))).toBe(true);
-        expect(dismatch(getElement('p'))).toBe(true);
-        expect(dismatch(getElement('div'))).toBe(true);
+
+        [
+            'span',
+            'p',
+            'div'
+        ].forEach(function (testcase) {
+            expect(dismatch(getElement(testcase))).toBe(true);
+        });
     });
 });
 
@@ -64,10 +88,19 @@ describe('unfound define', function () {
     var dismatch = define.isNot(name);
 
     it('should never match', function () {
-        expect(dismatch(getElement('span').childNodes[0])).toBe(true);
-        expect(dismatch(getElement('span{hello!}').childNodes[0])).toBe(true);
-        expect(dismatch(getElement('span'))).toBe(true);
-        expect(dismatch(getElement('p'))).toBe(true);
-        expect(dismatch(getElement('div'))).toBe(true);
+        [
+            'span',
+            'span{hello!}'
+        ].forEach(function (testcase) {
+            expect(dismatch(getElement(testcase).childNodes[0])).toBe(true);
+        });
+
+        [
+            'span',
+            'p',
+            'div'
+        ].forEach(function (testcase) {
+            expect(dismatch(getElement(testcase))).toBe(true);
+        });
     });
 });
