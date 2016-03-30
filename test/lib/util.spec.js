@@ -85,12 +85,16 @@ describe('method isCategory & isNotCategory', function () {
 
     it('should get correct result for category match', function () {
         expect(isCategory('interactive content', getElement('audio[controls]'))).toBe(true);
+        expect(isCategory('interactive content|flow content', getElement('audio[controls]'))).toBe(true);
         expect(isNotCategory('interactive content', getElement('audio'))).toBe(true);
+        expect(isNotCategory('interactive content|flow content', getElement('audio'))).toBe(false);
     });
 
     it('should return true for unknown elements', function () {
         expect(isCategory('interactive content', getElement('self-defined-tag'))).toBe(true);
+        expect(isCategory('interactive content|flow content', getElement('self-defined-tag'))).toBe(true);
         expect(isNotCategory('interactive content', getElement('self-defined-tag'))).toBe(false);
+        expect(isNotCategory('interactive content|flow content', getElement('self-defined-tag'))).toBe(false);
     });
 });
 
