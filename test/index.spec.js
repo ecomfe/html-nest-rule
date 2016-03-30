@@ -8,7 +8,7 @@
 
 var emmet = require('emmet');
 var parse = require('htmlcs/lib/parse');
-var rules = require('../');
+var nestRule = require('../');
 
 var forEach = function (obj, handler) {
     for (var tag in obj) {
@@ -28,7 +28,7 @@ var extend = function (target, src) {
 };
 
 var doTest = function (tagCases, tag) {
-    var rule = rules[tag];
+    var rule = nestRule.from(tag);
 
     var getElement = function (domExpression) {
         var htmlCode = emmet.expandAbbreviation(domExpression, {html: 'xhtml'});

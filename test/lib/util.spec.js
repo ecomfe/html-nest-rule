@@ -6,7 +6,7 @@
 var emmet = require('emmet');
 var parse = require('htmlcs/lib/parse');
 
-var rules = require('../../');
+var rules = require('../../').rules;
 var util = require('../../lib/util');
 
 var getFirstTag = function (domExpression) {

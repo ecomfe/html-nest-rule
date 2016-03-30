@@ -121,4 +121,21 @@ var rules = require('./lib/core');
     rules[rule.tagName] = rule;
 });
 
-module.exports = rules;
+module.exports = {
+    rules: rules,
+
+    /**
+     * Get rule for given tagName / element.
+     *
+     * @param {string|Element} target - given tagName or element
+     * @return {Object|undefined} corresponding rule
+     */
+    from: function (target) {
+        var tag = target && target.tagName
+            ? target.tagName
+            : target;
+
+        tag = (tag + '').toLowerCase();
+        return rules[tag];
+    }
+};
