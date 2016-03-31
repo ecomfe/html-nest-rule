@@ -70,7 +70,7 @@ var doTest = function (tagCases, tag) {
             var dom = testcase[0];
             var expected = testcase[1];
             var element = getElement(dom);
-            var result = rule.validateContext(element, []);
+            var result = rule.validateContext(element);
 
             describe('for contexts of ' + tag + ' in ' + dom, function () {
                 it('there should be ' + expected + ' problem(s)', function () {
@@ -85,13 +85,13 @@ var doTest = function (tagCases, tag) {
         // do some hack here
         if (situation.desc === 'empty') {
             var element = getElement(tag);
-            var resultWithNoChildren = rule.validateContent(element, []);
+            var resultWithNoChildren = rule.validateContent(element);
             var resultWithChildren = rule.validateContent(extend(element, {
                 childNodes: getElement('div#target>p').childNodes.map(function (child) {
                     child.parentNode = element;
                     return child;
                 })
-            }), []);
+            }));
 
             describe('content of ' + tag, function () {
                 it('should be empty', function () {
@@ -106,7 +106,7 @@ var doTest = function (tagCases, tag) {
             var dom = testcase[0];
             var expected = testcase[1];
             var element = getElement(dom);
-            var result = rule.validateContent(element, []);
+            var result = rule.validateContent(element);
 
             describe('for content of ' + tag + ' in ' + dom, function () {
                 it('there should be ' + expected + ' problem(s)', function () {

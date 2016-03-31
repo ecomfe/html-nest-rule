@@ -23,6 +23,6 @@ var element = document.createElement('p');
 var rule = require('html-nest-rule').from(element);
 
 rule.getCategories(element);        // ['flow content', 'palpable content'], categories of given element
-rule.validateContext(element, []);  // [], do context validate
-rule.validateContent(element, []);  // [], do content validate
+rule.validateContext(element);      // [], do context validate
+rule.validateContent(element);      // [], do content validate
 ```
