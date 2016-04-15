@@ -8,22 +8,21 @@ html-nest-rule
 [![DevDependencies](https://img.shields.io/david/dev/ecomfe/html-nest-rule.svg?style=flat)](https://david-dm.org/ecomfe/html-nest-rule)
 
 
-html-nest-rule is for ...
+html-nest-rule is nesting rule realization for [HTML spec](https://www.w3.org/TR/html5/Overview.html).
 
 ### Install
 
-	npm i -g html-nest-rule
+``` shell
+npm i html-nest-rule
+```
 
 ### Usage
 
-* in CLI
+```javascript
+var element = document.createElement('p');
+var rule = require('html-nest-rule').from(element);
 
-	```shell
-	html-nest-rule
-	```
-
-* in Node.js
-
-	```javascript
-	var html-nest-rule = require('html-nest-rule');
-	```
+rule.getCategories(element);        // ['flow content', 'palpable content'], categories of given element
+rule.validateContext(element);      // [], do context validate
+rule.validateContent(element);      // [], do content validate
+```
