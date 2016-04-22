@@ -1,6 +1,6 @@
 {
   "name": "html-nest-rule",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "nesting rule realization for HTML spec",
   "main": "index.js",
   "devDependencies": {
