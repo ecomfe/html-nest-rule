@@ -1105,7 +1105,11 @@ var casesByTag = {
                     ['a>div', 0],
                     // but there must be no interactive content descendant
                     ['a>button', 1],
-                    ['a>p>button', 1]
+                    ['a>p>button', 1],
+                    ['a>a', 1],
+                    ['a>span>a', 1],
+                    ['a>object>a', 1],
+                    ['a>ins>ins>object#target>a', 1]
                 ]
             }
         ]
@@ -1867,7 +1871,7 @@ var casesByTag = {
                     ['p>ins{hello!}', 0],
                     ['p>ins>span{hello!}', 0],
                     ['p>ins>div', 1],
-                    ['ins>div', 0]
+                    ['p>ins>ins#target>div', 1]
                 ]
             }
         ]
@@ -1896,7 +1900,8 @@ var casesByTag = {
                     ['p>del{hello!}', 0],
                     ['p>del>span{hello!}', 0],
                     ['p>del>div', 1],
-                    ['del>div', 0]
+                    ['del>div', 0],
+                    ['p>ins>del#target>div', 1]
                 ]
             }
         ]
